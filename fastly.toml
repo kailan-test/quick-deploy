@@ -6,7 +6,7 @@ description = "Get to know the Fastly Compute@Edge environment with a basic star
 language = "rust"
 manifest_version = 1
 name = "quick-deploy"
-service_id = "5HeEXMmk5UtlUJHzAnTo7M"
+service_id = "07XLxsylW6kUSxj4sH3Qx0"
 
 [[setup.backends]]
 prompt = "GitHub API"
