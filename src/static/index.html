@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Quick Deploy Demo</title>
+  <link rel="stylesheet" href="/style.css" />
+  <link href="https://fonts.googleapis.com/css?family=Inter" rel="stylesheet" type="text/css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+</head>
+
+<body>
+  <div class="content">
+    <h1>Make your Compute@Edge solutions deployable in one click</h1>
+    <p><strong>This service is in development and not yet ready for public use. Deployments are likely to fail.</strong></p>
+
+    <br/><br/>
+
+    <h2>Generate a "Click to Deploy" link for your project</h2>
+    <p>Ensure your repository is a <a href="https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-on-github/creating-a-template-repository">template repository</a>, has a valid <kbd>fastly.toml</kbd>, and has a GitHub Actions workflow set up to deploy on push. The <kbd>FASTLY_API_TOKEN</kbd> environment variable will be available within workflows.</p>
+
+    <br/>
+
+    {{ if not button_nwo }}
+      <form action="/" method="get">
+        <label for="repository">GitHub Repository:</label><br/>
+        <input type="text" name="repository" id="repository" placeholder="enviark/weather" /><br/>
+        <input type="submit" value="Generate">
+      </form>
+    {{ else }}
+      <p>Add this to your <kbd>README.md</kbd>:</p>
+      <code>
+        * [Deploy this to Compute@Edge](https://deploy.edgecompute.app/{ button_nwo })
+      </code>
+    {{ endif }}
+
+    <br/><br/>
+
+    <h2>Configuration</h2>
+
+    <p>Add a <kbd>[setup]</kbd> section to the <kbd>fastly.toml</kbd> file within your repository following the reference at <a href="https://fastly.dev/reference/fastly-toml/#reference">https://fastly.dev/reference/fastly-toml</a>.</p>
+
+    <code>
+      [[setup.backends]]<br/>
+      prompt = "OpenWeatherMap API Server"<br/>
+      name = "api.openweathermap.org"<br/>
+      address = "api.openweathermap.org"<br/>
+      port = 443<br/>
+      <br/>
+      [[setup.dictionaries]]<br/>
+      name = "weather_auth"<br/>
+      <br/>
+      [[setup.dictionaries.items]]<br/>
+      prompt = "API token for openweathermap.org"<br/>
+      key = "key"<br/>
+      input_type = "string"
+    </code>
+  </div>
+</body>
+
+</html>

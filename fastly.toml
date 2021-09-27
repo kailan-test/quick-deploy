@@ -1,0 +1,41 @@
+# This file describes a Fastly Compute@Edge package. To learn more visit:
+# https://developer.fastly.com/reference/fastly-toml/
+
+authors = ["kblanks@fastly.com"]
+description = "Get to know the Fastly Compute@Edge environment with a basic starter kit that demonstrates routing, simple synthetic responses and overriding caching rules."
+language = "rust"
+manifest_version = 1
+name = "quick-deploy"
+service_id = "5HeEXMmk5UtlUJHzAnTo7M"
+
+[[setup.backends]]
+prompt = "GitHub API"
+name = "api.github.com"
+address = "api.github.com"
+port = 443
+
+[[setup.backends]]
+prompt = "GitHub Application"
+name = "github.com"
+address = "github.com"
+port = 443
+
+[[setup.backends]]
+prompt = "Fastly API"
+name = "api.fastly.com"
+address = "api.fastly.com"
+port = 443
+
+[[setup.dictionaries]]
+name = "github_auth"
+prompt = "GitHub OAuth Configuration"
+
+[[setup.dictionaries.items]]
+prompt = "Client ID"
+key = "client_id"
+input_type = "string"
+
+[[setup.dictionaries.items]]
+prompt = "Client Secret"
+key = "client_secret"
+input_type = "password"
